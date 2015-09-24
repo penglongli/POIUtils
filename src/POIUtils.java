@@ -22,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class POIUtils {
 public static void main(String[] args) throws FileNotFoundException {
+<<<<<<< HEAD
 		String relativelyPath=System.getProperty("user.dir"); 
 	    String fileName ="\\static\\test.xls";
 	    File file = new File(relativelyPath+fileName);
@@ -30,6 +31,16 @@ public static void main(String[] args) throws FileNotFoundException {
 	    int count = getRecordsCountByInputStream(inputStream,1, true, 1);
 	    System.out.print(count);*/
 	    readXLSRecords(inputStream, true, 3);
+=======
+	    
+	    String path ="E:/test.xlsx";
+	    File file = new File(path);
+	    InputStream inputStream = new FileInputStream(file);
+	    //计算行数目
+	    //int count = getRecordsCountByInputStream(inputStream,1, true, 1);
+	    //System.out.print(count);
+	    readXLSXRecords(inputStream, true, 3);
+>>>>>>> 18d909645612934531ef48d9cb88b40ff6de15df
 	}
 	
 	/**
@@ -83,9 +94,14 @@ public static void main(String[] args) throws FileNotFoundException {
 	 * @param headerCount 表头行数
 	 * @return 返回不包含表头的信息列表
 	 */
+<<<<<<< HEAD
 	public static HashMap<String,List<Product>> readXLSRecords(InputStream inputStream, boolean isHeader, int headerCount){
 		//存储数据格式：String存储门店编号，List<HashMap>存储商品编号、商品数量列表
 		HashMap<String,List<Product>> paramMapList = new HashMap<String,List<Product>>();
+=======
+	public static List<HashMap<String, Object>> readXLSRecords(InputStream inputStream, boolean isHeader, int headerCount){
+		List<HashMap<String, Object>> paramMapList = new ArrayList<HashMap<String,Object>>();
+>>>>>>> 18d909645612934531ef48d9cb88b40ff6de15df
 		
 		try {
 			HSSFWorkbook hswb = new HSSFWorkbook(inputStream);
@@ -99,19 +115,29 @@ public static void main(String[] args) throws FileNotFoundException {
 			
 			HSSFRow row = null;
 			int colNumber = 0;
+<<<<<<< HEAD
 			List<Product> paramMap = new ArrayList<Product>();
 			//遍历Excel行
+=======
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+>>>>>>> 18d909645612934531ef48d9cb88b40ff6de15df
 			for(int i = begin;i<hsSheet.getLastRowNum();i++){
 				row = hsSheet.getRow(i);
 				colNumber = row.getPhysicalNumberOfCells();
 				
 				if(row != null){
+<<<<<<< HEAD
 					//遍历Excel列
 					Product product = new Product();
 					for(int j = 1;j < colNumber; j++){
 						HSSFCell cell = row.getCell(j);
 						
 						
+=======
+					paramMap.clear();
+					for(int j = 0;j < colNumber; j++){
+						HSSFCell cell = row.getCell(j);
+>>>>>>> 18d909645612934531ef48d9cb88b40ff6de15df
 						row.getCell(j).setCellType(Cell.CELL_TYPE_STRING);
 						System.out.print(cell.getStringCellValue()+" ");
 					}
